@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import com.joaquito.horscopoapp.R
 import com.joaquito.horscopoapp.databinding.FragmentLuckBinding
 import com.joaquito.horscopoapp.databinding.FragmentPalmistryBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PalmistryFragment : Fragment() {
 
         private var _binding: FragmentPalmistryBinding? = null
