@@ -1,7 +1,8 @@
 package com.joaquito.horscopoapp.data.network
 
+
 import com.joaquito.horscopoapp.data.RepositoryImpl
-import com.joaquito.horscopoapp.data.core.interceptor.AuthInterceptor
+import com.joaquito.horscopoapp.data.core.interceptors.AuthInterceptor
 import com.joaquito.horscopoapp.domain.Repository
 import dagger.Module
 import dagger.Provides
