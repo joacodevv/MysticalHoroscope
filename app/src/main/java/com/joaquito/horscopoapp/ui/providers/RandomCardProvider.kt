@@ -5,6 +5,7 @@ import com.joaquito.horscopoapp.ui.model.LuckyModel
 import javax.inject.Inject
 import kotlin.random.Random
 
+//hacemos un when para designar los valores a cada carta
 class RandomCardProvider @Inject constructor() {
     fun getRandomCard():LuckyModel?{
         return when(Random.nextInt(0,32)){

@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joaquito.horscopoapp.R
 import com.joaquito.horscopoapp.domain.model.HoroscopeInfo
 
+//iniciamos el adapter con una lista vacia y añadimos una funcion lambda para ver que item fue selecionado
 class HoroscopeAdapter(private var horoscopeList:List<HoroscopeInfo> = emptyList(),
     private val onItemSelected:(HoroscopeInfo) -> Unit ):
     RecyclerView.Adapter<HoroscopeViewHolder>(){
 
     fun updateList(list: List<HoroscopeInfo>){
+        //por las dudas por si se cambia algo en el HoroscopeInfo
         horoscopeList = list
         notifyDataSetChanged()
     }

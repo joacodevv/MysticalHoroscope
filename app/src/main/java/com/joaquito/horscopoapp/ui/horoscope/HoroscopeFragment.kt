@@ -25,6 +25,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class HoroscopeFragment : Fragment() {
 
+    //incializamos lo que vamos a usar desp (viewmodel, adapter, viewbinding)
+
     private val horoscopeViewModel by viewModels<HoroscopeViewModel>()
 
     private lateinit var horoscopeAdapter: HoroscopeAdapter
@@ -43,7 +45,9 @@ class HoroscopeFragment : Fragment() {
     }
 
     private fun initList() {
+        //vinculamos el adapter para q reciba la funcion  lambda
         horoscopeAdapter = HoroscopeAdapter(onItemSelected = {
+            //declaramos en un when cada data object de HoroscopeInfo para vincularlo con su model de una clase enumerada
             val type = when(it){
                 HoroscopeInfo.Aquarius -> HoroscopeModel.Aquarius
                 HoroscopeInfo.Aries -> HoroscopeModel.Aries
@@ -58,11 +62,13 @@ class HoroscopeFragment : Fragment() {
                 HoroscopeInfo.Taurus -> HoroscopeModel.Taurus
                 HoroscopeInfo.Virgo -> HoroscopeModel.Virgo
             }
+            //cuando se haga click en un elemento del recyclerview se activa la navegacion hacia la pantalla de detail
             findNavController().navigate(
                 HoroscopeFragmentDirections.actionHoroscopeFragmentToHoroscopeDetailActivity(type)
             )
         })
 
+        //seteamos bien el adapter y configuramos el layoutmanager para q tenga 2 columnas
         binding.rvHoroscope.apply {
             layoutManager = GridLayoutManager(context, 2)
             adapter = horoscopeAdapter
@@ -70,7 +76,10 @@ class HoroscopeFragment : Fragment() {
 
     }
 
+
     private fun initUIState() {
+        //lanzamos una corrutina basada en el ciclo de vida del viewmodel
+        //collecteamos la info del viewmodel y la trasladamos al adapter actualizando la lista por si hubo cambios en HoroscopeInfo
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 horoscopeViewModel.horoscope.collect {

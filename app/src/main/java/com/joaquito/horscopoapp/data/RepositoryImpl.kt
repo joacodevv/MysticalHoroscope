@@ -8,6 +8,7 @@ import com.joaquito.horscopoapp.domain.model.PredictionModel
 import retrofit2.Retrofit
 import javax.inject.Inject
 
+//implementamos la llamada a api al dominio
 class RepositoryImpl @Inject constructor(private val apiService: HoroscopeApiService) :Repository {
     override suspend fun getPrediction(sign: String):PredictionModel? {
         runCatching { apiService.getHoroscope(sign) }

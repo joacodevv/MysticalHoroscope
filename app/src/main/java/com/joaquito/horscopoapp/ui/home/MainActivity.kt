@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    //inicializamos el viewbinding y la navegacion
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initNavigation() {
+        //seteamos la navegacion entre fragments y la vinculamos con el menu de navegacion creado en xml
         val navHost = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHost.navController
         binding.bottomNavView.setupWithNavController(navController)

@@ -15,14 +15,18 @@ import javax.inject.Inject
 
 
 @HiltViewModel
+//conectamos con daggerhilt al caso de uso
 class HoroscopeDetailViewModel @Inject constructor(private val getPredictionUseCase: GetPredictionUseCase):ViewModel() {
 
+    //creamos el stateflow mutable
     private var _state = MutableStateFlow<HoroscopeDetailState>(HoroscopeDetailState.Loading)
     val state:StateFlow<HoroscopeDetailState> = _state
 
     lateinit var horoscope:HoroscopeModel
 
+
     fun getHoroscope(sign: HoroscopeModel){
+        //en el hilo secundario rescatamos datos de backend y los comprobamos para definir el estado en la activity
         horoscope = sign
         viewModelScope.launch {
             _state.value = HoroscopeDetailState.Loading

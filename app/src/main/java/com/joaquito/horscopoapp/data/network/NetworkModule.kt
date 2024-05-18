@@ -19,6 +19,7 @@ import javax.inject.Singleton
 object NetworkModule {
     @Provides
     @Singleton
+    //hacemos la llamada
     fun provideRetrofit(okHttpClient: OkHttpClient):Retrofit{
         return Retrofit
             .Builder()

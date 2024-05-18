@@ -18,8 +18,10 @@ import kotlinx.coroutines.launch
 class HoroscopeDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHoroscopeDetailBinding
+    //conectamos el viewmodel
     private val horoscopeDetailViewModel:HoroscopeDetailViewModel by viewModels()
 
+    //definimos los args
     private val args:HoroscopeDetailActivityArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,11 +37,14 @@ class HoroscopeDetailActivity : AppCompatActivity() {
         initUIState()
     }
 
+
     private fun initListeners() {
+        //boton para ir para atras
         binding.ivBack.setOnClickListener{ onBackPressed() }
     }
 
     private fun initUIState() {
+        //definimos el estado de la llamada a api en un corrutina y controlamos esos estados
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 horoscopeDetailViewModel.state.collect{
@@ -54,6 +59,7 @@ class HoroscopeDetailActivity : AppCompatActivity() {
     }
 
     private fun successState(state: HoroscopeDetailState.Success) {
+        //conectamos los valores traidos de backend a xml
         binding.pb.isVisible = false
         binding.tvDetailTitle.text = state.sign
         binding.tvBody.text = state.prediction
@@ -75,10 +81,12 @@ class HoroscopeDetailActivity : AppCompatActivity() {
     }
 
     private fun errorState() {
+        //cuando la llamada a backend sale mal
         binding.pb.isVisible = false
     }
 
     private fun loadingState() {
+        //cuando esta cargando la llamada
         binding.pb.isVisible = true
     }
 

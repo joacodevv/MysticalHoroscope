@@ -52,6 +52,7 @@ class LuckFragment : Fragment() {
         initListeners()
     }
 
+    //preparamos lo que vaya a salir en base a la carta que salga
     private fun preparePrediction() {
         val luck = randomCardProvider.getRandomCard()
         luck?.let {luck
@@ -61,6 +62,7 @@ class LuckFragment : Fragment() {
         }
     }
 
+    //configuramos el boton de compartir nativo de android
     private fun shareResult(prediction: String) {
         val sendIntent:Intent = Intent().apply {
             action = Intent.ACTION_SEND
@@ -72,7 +74,7 @@ class LuckFragment : Fragment() {
         startActivity(shareIntent)
     }
 
-
+    //preparamos los listeners para girar la ruleta
     @SuppressLint("ClickableViewAccessibility")
     private fun initListeners() {
         //binding.ivRoulette.setOnClickListener{ spinRoulette() }
@@ -90,6 +92,9 @@ class LuckFragment : Fragment() {
         })
     }
 
+    //definimos mediante un random cuantos grados va a girar la ruelta
+    //hacemos la animacion de giro
+    //y preparamos la siguiente animacion
     private fun spinRoulette() {
 
         val random = Random()
@@ -102,6 +107,7 @@ class LuckFragment : Fragment() {
         animator.start()
     }
 
+    //hacemos la animacion de que suba la carta elegida
     private fun slideCard(){
         val slideUpAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_up)
         slideUpAnimation.setAnimationListener(object : Animation.AnimationListener{
@@ -121,6 +127,7 @@ class LuckFragment : Fragment() {
         binding.reverse.startAnimation(slideUpAnimation)
     }
 
+    //hacemos la animacion de que crezca la carta
     private fun growCard() {
         val growAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.grow)
 
@@ -139,6 +146,7 @@ class LuckFragment : Fragment() {
         binding.reverse.startAnimation(growAnimation)
     }
 
+    //sacamos las animaciones y hacemos aparecer la vista con la prediccion
     private fun showPredictionView() {
         val disappearAnimation = AlphaAnimation(1.0f , 0.0f)
         disappearAnimation.duration = 200

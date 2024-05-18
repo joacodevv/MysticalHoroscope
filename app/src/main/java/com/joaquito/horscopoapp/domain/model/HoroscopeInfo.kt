@@ -2,6 +2,7 @@ package com.joaquito.horscopoapp.domain.model
 
 import com.joaquito.horscopoapp.R
 
+//definimos una clase sellada con cada signo como un objeto con su imagen y nombre
 sealed class HoroscopeInfo(val img:Int, val name:Int){
     data object Aries:HoroscopeInfo(R.drawable.aries, R.string.aries)
     data object Taurus:HoroscopeInfo(R.drawable.tauro, R.string.taurus)

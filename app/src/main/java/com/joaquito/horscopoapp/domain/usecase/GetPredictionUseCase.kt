@@ -4,6 +4,7 @@ import com.joaquito.horscopoapp.domain.Repository
 import com.joaquito.horscopoapp.domain.model.PredictionModel
 import javax.inject.Inject
 
+//tomamos la llamada a internet
 class GetPredictionUseCase @Inject constructor(private val repository: Repository) {
 
     suspend operator fun invoke(sign:String):PredictionModel?{
